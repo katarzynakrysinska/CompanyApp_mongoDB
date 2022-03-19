@@ -39,43 +39,44 @@ describe('Employee', () => {
     }
   });
 
-    {/* 
-  it('should throw an error if "name" is not a string', () => {
+  it('should throw an error if "firstName" is not a string', () => {
 
     const cases = [{}, []];
-    for(let name of cases) {
-      const dep = new Department({ name });
-  
-      dep.validate(err => {
-        expect(err.errors.name).to.exist;
+    for(let firstName of cases) {
+      const emp = new Employee(firstName);
+      emp.validate(err => {
+      expect(err.errors).to.exist;
       });
     }
   });
 
-  it('should throw an error if "name" is too short or too long', () => {
+  it('should throw an error if "lastName" is not a string', () => {
 
-    const cases = ['ABC', 'abcd', 'Lorem ipsum, Lorem Ip']; // we test various cases, some of them are too short, some of them are too long
-    for(let name of cases) {
-      const dep = new Department({ name });
-  
-      dep.validate(err => {
-        expect(err.errors.name).to.exist;
+    const cases = [{}, []];
+    for(let lastName of cases) {
+      const emp = new Employee(lastName);
+      emp.validate(err => {
+      expect(err.errors).to.exist;
       });
     }
   });
 
-  it('should not throw an error if "name" is okay', () => {
+  it('should throw an error if "department" is not a string', () => {
 
-    const cases = ['Management', 'Human Resources'];
-    for(let name of cases) {
-      const dep = new Department({ name });
-  
-      dep.validate(err => {
-        expect(err).to.not.exist;
+    const cases = [{}, []];
+    for(let department of cases) {
+      const emp = new Employee(department);
+      emp.validate(err => {
+      expect(err.errors).to.exist;
       });
-  
     }
-  
-  });   */}
+  });
 
-});
+  it('should not throw an error if data is okay', () => {
+
+    const emp = new Employee({firstName: 'Jane', lastName: 'Doe', department: 'Human Resources'});
+      emp.validate(err => {
+      expect(err).to.not.exist;
+      });
+    });
+  });
